@@ -34,7 +34,7 @@ def generate_trip(data: TripRequest):
         llm = LLM(
         model="groq/llama-3.3-70b-versatile",
         api_key=data.groq_key,
-        max_tokens=800
+        max_tokens=1000
 )
 
         search_tool = TavilySearchTool(api_key=data.tavily_key)
@@ -67,7 +67,7 @@ def generate_trip(data: TripRequest):
         research_task = Task(
             description = (f"Use a ferramenta de busca para achar atrações, restaurantes e experiências para {data.days} dias em {data.city} "
                            f"com base em: {data.interests}. Liste atrações com nome e URL."),
-            expected_output = "Lista com pelo menos 5 sugestões e URL.",
+            expected_output = "Lista com pelo menos 3 sugestões e URL.",
             agent=travel_guide
         )
 
@@ -80,7 +80,7 @@ def generate_trip(data: TripRequest):
 
         writing_task = Task(
             description="Criar roteiro final",
-            expected_output="Roteiro final em Markdown com detalhes da viagem.",
+            expected_output="Roteiro final em Markdown com pequeno detalhamento da viagem.",
             agent=writer,
             context=[planning_task]
         )
