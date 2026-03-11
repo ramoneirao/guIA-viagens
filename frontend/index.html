@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<title>Planejador de Viagens IA</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <!-- Botão para abrir a sidebar -->
+<button class="settings-btn" onclick="toggleSidebar()">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M12 1v6m0 6v6m5.196-15.804l-4.242 4.242m0 5.124l-4.242 4.242M23 12h-6m-6 0H1m15.804 5.196l-4.242-4.242m-5.124 0l-4.242 4.242"></path>
+</svg>
+Configurações
+</button>
+
+<!-- Barra lateral para API Keys -->
+<div id="sidebar" class="sidebar">
+<div class="sidebar-content">
+<div class="sidebar-header">
+<h2>Chaves de API</h2>
+<button class="close-btn" onclick="toggleSidebar()">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+
+<div class="sidebar-form">
+<label>Groq API Key</label>
+<input type="password" id="groq" placeholder="Digite sua chave Groq">
+<small>Obtenha em <a href="https://console.groq.com" target="_blank">console.groq.com</a></small>
+
+<label>Tavily API Key</label>
+<input type="password" id="tavily" placeholder="Digite sua chave Tavily">
+<small>Obtenha em <a href="https://tavily.com" target="_blank">tavily.com</a></small>
+
+<button onclick="saveApiKeys()" class="save-btn">Salvar Chaves</button>
+<p id="save-message" class="save-message hidden"></p>
+</div>
+</div>
+</div>
+
+<div class="container">
+
+<header class="header">
+<h1>Planejador de Viagens</h1>
+<p class="subtitle">Crie roteiros personalizados com inteligência artificial</p>
+</header>
+
+<div class="form">
+
+<div class="form-row">
+<div class="form-group">
+<label>Cidade / País</label>
+<input type="text" id="city" placeholder="Paris, França">
+</div>
+
+<div class="form-group">
+<label>Dias</label>
+<input type="number" id="days" value="3">
+</div>
+</div>
+
+<div class="form-group">
+<label>Interesses</label>
+<textarea id="interests" placeholder="Ex: Museus, gastronomia, natureza..."></textarea>
+</div>
+
+<button onclick="generateTrip()" class="generate-btn">Gerar Roteiro</button>
+
+</div>
+
+<div id="loading" class="hidden">
+Gerando roteiro...
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
